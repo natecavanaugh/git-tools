@@ -532,7 +532,7 @@ def command_info(username, detailed = False):
 
 	url = get_api_url(url)
 
-	url += '?per_page=100'
+	url += '?per_page=100&type=owner'
 
 	repos = github_json_request(url)
 
@@ -1463,6 +1463,8 @@ def github_request(url, params = None, authenticate = True):
 
 	if DEBUG:
 		print url
+
+	req.add_header('Accept', 'application/vnd.github.v3+json')
 
 	try:
 		response = urllib2.urlopen(req)
